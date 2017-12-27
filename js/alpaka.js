@@ -15,11 +15,12 @@ class Alpaka
   this.vy+=5;
  }
 
- move(dt)
+ update(dt)
  {
   this.vy-=GRAVITY*dt;
-  this.y+=this.vy*this.dt;
-  this.x+=this.vx*this.dt;
+  this.y+=this.vy*dt;
+  this.x+=this.vx*dt;
   //if(vy<0) {vy=0;}
  }
+
 }
