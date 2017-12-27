@@ -1,14 +1,19 @@
 body
 {
- background-color: yellow; 
+ background-color: yellow;
+ padding: 0;
+ margin: 0;
 }
 
 #gameCanvas
 {
+ position: absolute;
+ top:0px;
+ left:0px;
  padding: 0;
  margin: 0;
- width:1280;
- height:720;
- background-color:darkblue;
- color:white; 
+ width:1280px;
+ height:720px;
+ color:white;
+ background:url('../img/background_01.jpg'); 
 }
