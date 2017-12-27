@@ -13,6 +13,7 @@ function main()
 // const scale = Math.min(window.innerWidth/canvas.width,window.innerHeight/canvas.height);
 // canvas.setAttribute('style','transform: scale('+scale+')');//removes existing style
  ctx = canvas.getContext("2d");
+ ctx.imageSmoothingEnabled = false;
  ctx.webkitImageSmoothingEnabled = false;
  console.log();
  state = new GameState(canvas,ctx);
