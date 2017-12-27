@@ -1,10 +1,11 @@
 class GameState
 {
- constructor()
+ constructor(canvas)
  {
   this.players=[];
   this.alpakas=[];
   this.elapsed=0;
+  this.canvas=canvas;
  }
 
  update(dt)
@@ -14,7 +15,7 @@ class GameState
   if(this.elapsed>rate)
   {
    this.elapsed-=rate;
-   this.alpakas.push(new Alpaka()); 
+   this.alpakas.push(new Alpaka(Math.random(this.canvas.width))); 
   }
   for(const alpaka of this.alpakas)
   {
@@ -25,6 +26,10 @@ class GameState
  draw()
  {
   ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(const alpaka of this.alpakas)
+  {
+   alpaka.draw(canvas);
+  }
  }
 
  alpakaSpawnRate()
