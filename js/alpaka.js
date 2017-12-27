@@ -1,5 +1,14 @@
-const GRAVITY = 1.0;
-const alpakaSprite = new Sprite("./img/background_01.jpg",20,20);
+const GRAVITY = 0.001;
+const SCALE = 4;
+const VY_MAX = 1;
+const VY_SLOW = 0.1;
+const spriteUris =
+[
+"./img/alpakaOrangeLO.png","./img/alpakaOrangeLU.png","./img/alpakaOrangeLN.png",
+"./img/alpakaOrangeRO.png","./img/alpakaOrangeRU.png","./img/alpakaOrangeRN.png"
+];
+const sprites = [];
+for(const uri of spriteUris) {sprites.push(new Sprite(uri,20*SCALE,28*SCALE));}
 
 class Alpaka
 {
@@ -18,14 +27,30 @@ class Alpaka
 
  update(dt)
  {
-  this.vy-=GRAVITY*dt;
+  this.vy+=GRAVITY*dt;
+  this.vy=Math.min(this.vy,VY_MAX);
   this.y+=this.vy*dt;
-  this.x+=this.vx*dt;
+  if(this.y>620&&this.vy>0)
+  {
+   this.vy=-this.vy;
+  }
+  //this.x+=this.vx*dt;
   //if(vy<0) {vy=0;}
  }
 
- draw()
+ draw(ctx)
  {
-
+  console.log("draw"+this.x+" "+this.y);
+  let spriteNr = 0;
+  if(Math.abs(this.vy)<VY_SLOW)
+  {
+  spriteNr=2;
+  }
+  else
+  {
+  if(this.vy>0) spriteNr = 1;
+  }
+  const sprite = sprites[spriteNr];
+  sprite.draw(ctx,this.x,this.y);
  }
 }
