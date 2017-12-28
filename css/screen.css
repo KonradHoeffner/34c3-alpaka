@@ -15,6 +15,13 @@ body
  margin: 0;
 }
 
+#score
+{
+ color:white;
+ width:1280px;
+ text-align:right;
+}
+
 #mothership_back
 {
  background:url('../img/mothership_01_back.png'); 

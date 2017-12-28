@@ -12,12 +12,13 @@ for(const uri of spriteUris) {alpakaSprites.push(new Sprite(uri,20*SCALE,28*SCAL
 
 class Alpaka
 {
- constructor(x)
+ constructor(state,x)
  {
   this.x=x;
   this.y=-100;
   this.vx=Math.random()-0.5;
   this.vy=0;
+  this.state=state;
  }
 
  update(dt)
@@ -25,10 +26,17 @@ class Alpaka
   this.vy+=GRAVITY*dt;
   this.vy=Math.min(this.vy,VY_MAX);
   this.y+=this.vy*dt;
+  if(this.y>780)
+  {
+   state.lost=true;
+  }
+  /*
+  // bounce at the bottom
   if(this.y>620&&this.vy>0)
   {
    this.vy=-1.14*this.vy;
   }
+  */
   this.x+=this.vx*dt;
   if(this.x<0&&this.vx<0) {this.vx=-this.vx;}
   if(this.x>1200&&this.vx>0) {this.vx=-this.vx;}
