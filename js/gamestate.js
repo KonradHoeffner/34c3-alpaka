@@ -4,7 +4,7 @@ class GameState
 {
  constructor(canvas,ctx)
  {
-  this.players = [new Player(20,450),new Player(500,450)];
+  this.players = [new Player(20),new Player(500)];
   this.alpakas=[];
   this.elapsed=0;
   this.canvas=canvas;
