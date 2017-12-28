@@ -64,8 +64,10 @@ class Player
   const ydist = this.y-alpaka.y;
   if((Math.abs(xdist)<150)&&(ydist>0)&&(ydist<100))
   {
-   alpaka.vy=-alpaka.vy;
-   alpaka.vx+=xdist*0.01;
+   const av = Math.sqrt(alpaka.vx*alpaka.vx+alpaka.vy*alpaka.vy); 
+   const angle = (xdist*0.3-90)*Math.PI/180;
+   alpaka.vy=av*Math.sin(angle);
+   alpaka.vx=av*Math.cos(angle);
   }
  }
 
