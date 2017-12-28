@@ -45,4 +45,20 @@ class Mate
   const sprite = mateSprites[this.spriteNr];
   sprite.draw(ctx,this.x,this.y);
  }
+
+ collide(alpaka)
+ {
+  const cx = this.x+mateSprites[0].width/2;
+  const cy = this.y+mateSprites[0].height/2;
+  const acx = alpaka.x+alpakaSprites[0].width/2;
+  const acy = alpaka.y+alpakaSprites[0].height/2;
+  const xdist = acx-cx;
+  const ydist = acy-cy;
+  const dist = Math.sqrt(xdist*xdist+ydist*ydist); 
+  if(dist<100)
+  {
+   this.isAlive=false; 
+  }
+ }
+
 }
