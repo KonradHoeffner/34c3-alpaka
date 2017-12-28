@@ -1,10 +1,10 @@
-const MAX_ALPAKAS = 10;
+const MAX_ALPAKAS = 4;
 
 class GameState
 {
  constructor(canvas,ctx)
  {
-  this.players = [new Player(0,20),new Player(1,500)];
+  this.players = [new Player(0,500),new Player(1,20)];
   this.alpakas=[];
   this.mates=[];
   this.elapsed=0;
@@ -18,7 +18,7 @@ class GameState
  addPoints(points)
  {
   this.points+=parseInt(points);
-  document.getElementById("score").innerText=this.points;
+  //document.getElementById("score").innerText=this.points;
  }
 
  update(dt)
@@ -41,7 +41,13 @@ class GameState
    this.elapsed-=rate;
    this.alpakas.push(new Alpaka(this,Math.floor(Math.random()*this.canvas.width))); 
   }
-  for(const alpaka of this.alpakas) {alpaka.update(dt);}
+  const aliveAlpakas = [];
+  for(const alpaka of this.alpakas)
+  {
+   alpaka.update(dt);
+   if(alpaka.isAlive) {aliveAlpakas.push(alpaka);}
+  }
+  this.alpakas=aliveAlpakas;
  
   const aliveMates = [];
   for(const mate of this.mates)

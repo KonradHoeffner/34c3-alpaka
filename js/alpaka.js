@@ -19,13 +19,16 @@ class Alpaka
   this.vx=Math.random()-0.5;
   this.vy=0;
   this.state=state;
+  this.isAlive=true;
  }
 
  update(dt)
  {
+  if(!this.isAlive) {return;}
   this.vy+=GRAVITY*dt;
   this.vy=Math.min(this.vy,VY_MAX);
   this.y+=this.vy*dt;
+  
   if(this.y>780)
   {
    state.lost=true;
@@ -40,7 +43,13 @@ class Alpaka
   this.x+=this.vx*dt;
   if(this.x<0&&this.vx<0) {this.vx=-this.vx;}
   if(this.x>1200&&this.vx>0) {this.vx=-this.vx;}
-  //if(vy<0) {vy=0;}
+  // in ship?
+  if(this.vy<0&&this.y<50&&this.x>400&&this.x<840)
+  {
+   state.addPoints(1);
+   this.isAlive=false;
+  }
+
  }
 
  draw(ctx)
