@@ -48,13 +48,19 @@ class Alpaka
   {
    if(this.x>400&&this.x<840)
    {
-   state.addPoints(1);
-   this.isAlive=false;
+    this.rescue();
    } else
    {
     this.vy=-this.vy;
    }
   }
+ }
+
+ rescue()
+ {
+  state.addPoints(1);
+  this.isAlive=false;
+  state.blinks.push(new Blink(this.x-70,this.y-70));
  }
 
  draw(ctx)

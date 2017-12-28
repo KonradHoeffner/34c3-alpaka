@@ -58,8 +58,7 @@ class Mate
   if(dist<100)
   {
    this.isAlive=false;
-   alpaka.isAlive=false;
-   alpaka.state.addPoints(1);
+   alpaka.rescue();
   }
  }
 

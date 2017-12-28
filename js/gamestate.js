@@ -7,6 +7,7 @@ class GameState
   this.players = [new Player(0,500),new Player(1,20)];
   this.alpakas=[];
   this.mates=[];
+  this.blinks=[];
   this.elapsed=0;
   this.mateElapsed=0;
   this.canvas=canvas;
@@ -50,16 +51,25 @@ class GameState
    if(alpaka.isAlive) {aliveAlpakas.push(alpaka);}
   }
   this.alpakas=aliveAlpakas;
- 
-  const aliveMates = [];
-  for(const mate of this.mates)
   {
-   mate.update(dt);
-   for(const alpaka of this.alpakas) {mate.collide(alpaka);}
-   if(mate.isAlive) {aliveMates.push(mate);}
+   const aliveBlinks = [];
+   for(const blink of this.blinks)
+   {
+    blink.update(dt);
+    if(blink.isAlive) {aliveBlinks.push(blink);}
+   }
+   this.blinks = aliveBlinks;
   }
-  this.mates = aliveMates;
-
+  {
+   const aliveMates = [];
+   for(const mate of this.mates)
+   {
+    mate.update(dt);
+    for(const alpaka of this.alpakas) {mate.collide(alpaka);}
+    if(mate.isAlive) {aliveMates.push(mate);}
+   }
+   this.mates = aliveMates;
+  }
   for(const player of this.players)
   {
    player.update(dt);
@@ -76,6 +86,7 @@ class GameState
   }
   for(const alpaka of this.alpakas) {alpaka.draw(this.ctx);}
   for(const mate of this.mates) {mate.draw(this.ctx);}
+  for(const blink of this.blinks) {blink.draw(this.ctx);}
  }
 
  alpakaSpawnRate()
