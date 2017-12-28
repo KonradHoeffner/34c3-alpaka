@@ -6,7 +6,7 @@ const playerSpriteUris =
 const playerSprites = [];
 for(const uri of playerSpriteUris) {playerSprites.push(new Sprite(uri,512/2,256/2));}
 
-const SPEED = 5;
+const SPEED = 15;
 
 class Player
 {

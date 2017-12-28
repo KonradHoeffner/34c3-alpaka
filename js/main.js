@@ -25,6 +25,7 @@ function mainLoop()
 {
  if(state.lost)
  {
+  document.getElementById("lostScreen").style.visibility="visible";
   return;
  }
  if((time()-last)>MIN_TIME)
