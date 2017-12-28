@@ -12,6 +12,13 @@ class GameState
   this.canvas=canvas;
   this.ctx=ctx;
   this.points=0;
+  this.lost=false;
+ }
+
+ addPoints(points)
+ {
+  this.points+=parseInt(points);
+  document.getElementById("score").innerText=this.points;
  }
 
  update(dt)
@@ -32,7 +39,7 @@ class GameState
   if(this.alpakas.length<MAX_ALPAKAS&&this.elapsed>rate)
   {
    this.elapsed-=rate;
-   this.alpakas.push(new Alpaka(Math.floor(Math.random()*this.canvas.width))); 
+   this.alpakas.push(new Alpaka(this,Math.floor(Math.random()*this.canvas.width))); 
   }
   for(const alpaka of this.alpakas) {alpaka.update(dt);}
  
@@ -65,11 +72,11 @@ class GameState
 
  alpakaSpawnRate()
  {
-  return 1000;
+  return 2000;
  }
 
  mateSpawnRate()
  {
-  return 1000;
+  return 5000;
  }
 }

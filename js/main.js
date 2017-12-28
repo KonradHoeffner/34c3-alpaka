@@ -7,7 +7,6 @@ let state;
 const MAX_FPS=120;
 const MIN_TIME=1000.0/MAX_FPS;
 
-
 function main()
 {
  canvas = document.getElementById("gameCanvas");
@@ -24,6 +23,11 @@ function main()
 
 function mainLoop()
 {
+ if(state.lost)
+ {
+  document.getElementById("lostScreen").style.visibility="visible";
+  return;
+ }
  if((time()-last)>MIN_TIME)
  {
   last = now;
