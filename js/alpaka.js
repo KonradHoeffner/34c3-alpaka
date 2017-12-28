@@ -35,6 +35,8 @@ class Alpaka
    this.vy=-1.14*this.vy;
   }
   this.x+=this.vx*dt;
+  if(this.x<0&&this.vx<0) {this.vx=-this.vx;}
+  if(this.x>1200&&this.vx>0) {this.vx=-this.vx;}
   //if(vy<0) {vy=0;}
  }
 
