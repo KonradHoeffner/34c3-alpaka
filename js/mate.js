@@ -57,7 +57,9 @@ class Mate
   const dist = Math.sqrt(xdist*xdist+ydist*ydist); 
   if(dist<100)
   {
-   this.isAlive=false; 
+   this.isAlive=false;
+   alpaka.isAlive=false;
+   alpaka.state.addPoints(1);
   }
  }
 

@@ -44,7 +44,7 @@ class Alpaka
   if(this.x<0&&this.vx<0) {this.vx=-this.vx;}
   if(this.x>1200&&this.vx>0) {this.vx=-this.vx;}
   // in ship?
-  if(this.vy<0&&this.y<50)
+  if(this.vy<0&&this.y<30)
   {
    if(this.x>400&&this.x<840)
    {
@@ -52,7 +52,7 @@ class Alpaka
    this.isAlive=false;
    } else
    {
-    this.vy
+    this.vy=-this.vy;
    }
   }
  }
