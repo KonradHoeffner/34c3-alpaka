@@ -1,4 +1,4 @@
-const MAX_ALPAKAS = 4;
+const MAX_ALPAKAS = 20;
 
 class GameState
 {
@@ -13,6 +13,7 @@ class GameState
   this.ctx=ctx;
   this.points=0;
   this.lost=false;
+  this.timeTotal=0;
  }
 
  addPoints(points)
@@ -23,6 +24,7 @@ class GameState
 
  update(dt)
  {
+  this.timeTotal+=dt;
   this.elapsed+=dt;
   this.mateElapsed+=dt;
   const mateRate = this.mateSpawnRate();
@@ -78,7 +80,7 @@ class GameState
 
  alpakaSpawnRate()
  {
-  return 2000;
+  return 2000.0*10000/(10000+this.timeTotal);
  }
 
  mateSpawnRate()

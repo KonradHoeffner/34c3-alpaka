@@ -1,5 +1,5 @@
-const GRAVITY = 0.001;
-const VY_MAX = 1;
+const GRAVITY = 0.00015;
+const VY_MAX = 2;
 const VY_SLOW = 0.1;
 const SCALE = 4;
 const spriteUris =
