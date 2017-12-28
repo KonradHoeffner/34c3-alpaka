@@ -40,7 +40,6 @@ class Alpaka
 
  draw(ctx)
  {
-  console.log("draw"+this.x+" "+this.y);
   let spriteNr = 0;
   if(Math.abs(this.vy)<VY_SLOW)
   {
@@ -52,6 +51,6 @@ class Alpaka
   }
   if(this.vx>0) {spriteNr+=3;} // right facing row 
   const sprite = sprites[spriteNr];
-  sprite.draw(ctx,this.x,this.y);
+ sprite.draw(ctx,this.x,this.y);
  }
 }

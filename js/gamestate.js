@@ -4,7 +4,7 @@ class GameState
 {
  constructor(canvas,ctx)
  {
-  this.players=[];
+  this.players = [new Player(20,450),new Player(500,450)];
   this.alpakas=[];
   this.elapsed=0;
   this.canvas=canvas;
@@ -24,11 +24,19 @@ class GameState
   {
    alpaka.update(dt);
   }
+  for(const player of this.players)
+  {
+   player.update(dt);
+  }
  }
 
  draw()
  {
   this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
+  for(const player of this.players)
+  {
+   player.draw(this.ctx);
+  }
   for(const alpaka of this.alpakas)
   {
    alpaka.draw(this.ctx);
