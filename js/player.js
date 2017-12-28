@@ -1,6 +1,7 @@
 const playerSpriteUris =
 [
-"./img/ufo_01.png","./img/ufo_02.png","./img/ufo_03.png"
+"./img/ufo_01.png","./img/ufo_02.png","./img/ufo_03.png",
+"./img/ufo_p2_01.png","./img/ufo_p2_02.png","./img/ufo_p2_03.png"
 ];
 const playerSprites = [];
 for(const uri of playerSpriteUris) {playerSprites.push(new Sprite(uri,512/2,256/2));}
@@ -9,8 +10,9 @@ const SPEED = 5;
 
 class Player
 {
- constructor(x)
+ constructor(nr,x)
  {
+  this.nr=nr;
   this.x=x;
   this.y=585;
   this.rightPressed = false;
@@ -44,7 +46,7 @@ class Player
 
  draw(ctx)
  {
-  const sprite = playerSprites[this.spriteNr];
+  const sprite = playerSprites[3*this.nr+this.spriteNr];
   if(this.faceRight)
   {
    ctx.save(); 
