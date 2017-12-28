@@ -56,4 +56,17 @@ class Player
   }
  }
 
+ bounce(alpaka)
+ {
+  const cx = this.x+playerSprites[0].width/2;
+  const acx = alpaka.x+alpakaSprites[0].width/2;
+  const xdist = acx-cx;
+  const ydist = this.y-alpaka.y;
+  if((Math.abs(xdist)<150)&&(ydist>0)&&(ydist<100))
+  {
+   alpaka.vy=-alpaka.vy;
+   alpaka.vx+=xdist*0.01;
+  }
+ }
+
 }

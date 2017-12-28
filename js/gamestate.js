@@ -27,6 +27,10 @@ class GameState
   for(const player of this.players)
   {
    player.update(dt);
+   for(const alpaka of this.alpakas)
+   {
+    player.bounce(alpaka);
+   }
   }
  }
 
