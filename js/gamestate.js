@@ -4,13 +4,14 @@ class GameState
 {
  constructor(canvas,ctx)
  {
-  this.players = [new Player(20),new Player(500)];
+  this.players = [new Player(0,20),new Player(1,500)];
   this.alpakas=[];
   this.mates=[];
   this.elapsed=0;
   this.mateElapsed=0;
   this.canvas=canvas;
   this.ctx=ctx;
+  this.points=0;
  }
 
  update(dt)
@@ -34,14 +35,20 @@ class GameState
    this.alpakas.push(new Alpaka(Math.floor(Math.random()*this.canvas.width))); 
   }
   for(const alpaka of this.alpakas) {alpaka.update(dt);}
-  for(const mate of this.mates) {mate.update(dt);}
+ 
+  const aliveMates = [];
+  for(const mate of this.mates)
+  {
+   mate.update(dt);
+   for(const alpaka of this.alpakas) {mate.collide(alpaka);}
+   if(mate.isAlive) {aliveMates.push(mate);}
+  }
+  this.mates = aliveMates;
+
   for(const player of this.players)
   {
    player.update(dt);
-   for(const alpaka of this.alpakas)
-   {
-    player.bounce(alpaka);
-   }
+   for(const alpaka of this.alpakas) {player.bounce(alpaka);}
   }
  }
 

@@ -6,25 +6,37 @@ body
  overflow:hidden;
 }
 
-#background
+.absolute
 {
- background:url('../img/background_01.jpg'); 
  position: absolute;
  top:0px;
  left:0px;
  padding: 0;
  margin: 0;
+}
+
+#mothership_back
+{
+ background:url('../img/mothership_01_back.png'); 
+ width: 1280px;
+ height: 250px;
+}
+#mothership_front
+{
+ background:url('../img/mothership_01_front.png'); 
+ width: 1280px;
+ height: 250px;
+}
+
+#background
+{
+ background:url('../img/background_01.jpg');
  width: 1280px;
  height: 720px;
 }
 
 #gameCanvas
 {
- position: absolute;
- top:0px;
- left:0px;
- padding: 0;
- margin: 0;
 /* width:1280px;
  height:720px;*/
  color:white;
