@@ -6,7 +6,9 @@ class GameState
  {
   this.players = [new Player(20),new Player(500)];
   this.alpakas=[];
+  this.mates=[];
   this.elapsed=0;
+  this.mateElapsed=0;
   this.canvas=canvas;
   this.ctx=ctx;
  }
@@ -14,16 +16,25 @@ class GameState
  update(dt)
  {
   this.elapsed+=dt;
+  this.mateElapsed+=dt;
+  const mateRate = this.mateSpawnRate();
+  if(this.mateElapsed>mateRate)
+  {
+   this.mateElapsed-=mateRate;
+   const mate = new Mate(
+   	Math.floor(Math.random()*this.canvas.width),
+	Math.floor(Math.random()*this.canvas.height/2)
+	);
+   this.mates.push(mate);
+  }
   const rate = this.alpakaSpawnRate();
   if(this.alpakas.length<MAX_ALPAKAS&&this.elapsed>rate)
   {
    this.elapsed-=rate;
    this.alpakas.push(new Alpaka(Math.floor(Math.random()*this.canvas.width))); 
   }
-  for(const alpaka of this.alpakas)
-  {
-   alpaka.update(dt);
-  }
+  for(const alpaka of this.alpakas) {alpaka.update(dt);}
+  for(const mate of this.mates) {mate.update(dt);}
   for(const player of this.players)
   {
    player.update(dt);
@@ -41,13 +52,16 @@ class GameState
   {
    player.draw(this.ctx);
   }
-  for(const alpaka of this.alpakas)
-  {
-   alpaka.draw(this.ctx);
-  }
+  for(const alpaka of this.alpakas) {alpaka.draw(this.ctx);}
+  for(const mate of this.mates) {mate.draw(this.ctx);}
  }
 
  alpakaSpawnRate()
+ {
+  return 1000;
+ }
+
+ mateSpawnRate()
  {
   return 1000;
  }

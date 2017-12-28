@@ -1,7 +1,7 @@
 const GRAVITY = 0.001;
-const SCALE = 4;
 const VY_MAX = 1;
 const VY_SLOW = 0.1;
+const SCALE = 4;
 const spriteUris =
 [
 "./img/alpakaOrangeLO.png","./img/alpakaOrangeLU.png","./img/alpakaOrangeLN.png",
