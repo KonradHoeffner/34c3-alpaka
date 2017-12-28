@@ -43,7 +43,16 @@ class Player
  draw(ctx)
  {
   const sprite = playerSprites[this.spriteNr];
-  sprite.draw(ctx,this.x,this.y);
+  if(this.rightPressed)
+  {
+   ctx.save(); 
+   ctx.scale(-1,1);
+   sprite.draw(ctx,-this.x-sprite.width,this.y);
+   ctx.restore();
+  } else
+  {
+   sprite.draw(ctx,this.x,this.y);
+  }
  }
 
 }
