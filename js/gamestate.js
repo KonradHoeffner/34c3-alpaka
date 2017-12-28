@@ -80,7 +80,7 @@ class GameState
 
  alpakaSpawnRate()
  {
-  return 2000.0*10000/(10000+this.timeTotal);
+  return 3000.0*20000/(20000+this.timeTotal);
  }
 
  mateSpawnRate()

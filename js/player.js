@@ -67,10 +67,12 @@ class Player
   const ydist = this.y-alpaka.y;
   if((Math.abs(xdist)<150)&&(ydist>0)&&(ydist<100))
   {
-   const av = Math.sqrt(alpaka.vx*alpaka.vx+alpaka.vy*alpaka.vy)*1.01; // speed up on bounce
+   const av = Math.sqrt(alpaka.vx*alpaka.vx+alpaka.vy*alpaka.vy); // speed up on bounce
    const angle = (xdist*0.3-90)*Math.PI/180;
    alpaka.vy=av*Math.sin(angle);
    alpaka.vx=av*Math.cos(angle);
+   if(this.leftPressed) alpaka.vx-=0.2;
+   if(this.rightPressed) alpaka.vx+=0.2;
   }
  }
 
