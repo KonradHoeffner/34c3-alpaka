@@ -22,6 +22,18 @@ body
  text-align:right;
 }
 
+#lostScreenScore
+{
+ position:absolute;
+ font-size:10em;
+ top:400px;
+ left:0px;
+ width:1280px;
+ color:#6eff6b;
+ text-align:center;
+ font-family: 'Press Start 2P', cursive;
+}
+
 #mothership_back
 {
  background:url('../img/mothership_01_back.png'); 
