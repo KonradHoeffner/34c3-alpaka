@@ -38,7 +38,8 @@ class Player
    this.elapsed-=this.spriteChangeTime();
    this.spriteNr=(this.spriteNr+1)%3;
   }
-
+  if(this.x<-20) {this.x=-20;}
+  if(this.x>1040) {this.x=1040;}
  }
 
  draw(ctx)
