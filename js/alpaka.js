@@ -15,8 +15,8 @@ class Alpaka
  constructor(x)
  {
   this.x=x;
-  this.y=0;
-  this.vx=0;
+  this.y=-100;
+  this.vx=Math.random()-0.5;
   this.vy=0;
  }
  
@@ -32,7 +32,7 @@ class Alpaka
   this.y+=this.vy*dt;
   if(this.y>620&&this.vy>0)
   {
-   this.vy=-this.vy;
+   this.vy=-1.14*this.vy;
   }
   //this.x+=this.vx*dt;
   //if(vy<0) {vy=0;}
@@ -48,8 +48,9 @@ class Alpaka
   }
   else
   {
-  if(this.vy>0) spriteNr = 1;
+  if(this.vy>0) {spriteNr = 1;}
   }
+  if(this.vx>0) {spriteNr+=3;} // right facing row 
   const sprite = sprites[spriteNr];
   sprite.draw(ctx,this.x,this.y);
  }
