@@ -7,8 +7,8 @@ const spriteUris =
 "./img/alpakaOrangeLO.png","./img/alpakaOrangeLU.png","./img/alpakaOrangeLN.png",
 "./img/alpakaOrangeRO.png","./img/alpakaOrangeRU.png","./img/alpakaOrangeRN.png"
 ];
-const sprites = [];
-for(const uri of spriteUris) {sprites.push(new Sprite(uri,20*SCALE,28*SCALE));}
+const alpakaSprites = [];
+for(const uri of spriteUris) {alpakaSprites.push(new Sprite(uri,20*SCALE,28*SCALE));}
 
 class Alpaka
 {
@@ -34,13 +34,14 @@ class Alpaka
   {
    this.vy=-1.14*this.vy;
   }
-  //this.x+=this.vx*dt;
+  this.x+=this.vx*dt;
+  if(this.x<0&&this.vx<0) {this.vx=-this.vx;}
+  if(this.x>1200&&this.vx>0) {this.vx=-this.vx;}
   //if(vy<0) {vy=0;}
  }
 
  draw(ctx)
  {
-  console.log("draw"+this.x+" "+this.y);
   let spriteNr = 0;
   if(Math.abs(this.vy)<VY_SLOW)
   {
@@ -51,7 +52,7 @@ class Alpaka
   if(this.vy>0) {spriteNr = 1;}
   }
   if(this.vx>0) {spriteNr+=3;} // right facing row 
-  const sprite = sprites[spriteNr];
+  const sprite = alpakaSprites[spriteNr];
   sprite.draw(ctx,this.x,this.y);
  }
 }
