@@ -5,6 +5,18 @@ body
  margin: 0;
 }
 
+#background
+{
+ background:url('../img/background_01.jpg'); 
+ position: absolute;
+ top:0px;
+ left:0px;
+ padding: 0;
+ margin: 0;
+ width: 1280px;
+ height: 720px;
+}
+
 #gameCanvas
 {
  position: absolute;
@@ -15,5 +27,4 @@ body
 /* width:1280px;
  height:720px;*/
  color:white;
- background:url('../img/background_01.jpg'); 
 }
