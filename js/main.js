@@ -1,10 +1,11 @@
 let canvas;
 let ctx;
 let timestamp = 0;
-let now = time();
-let last=time();
+let now = time(); // all times are in milliseconds
+let last = time();
 let state;
-const MIN_TIME=1000.0/10;
+const MAX_FPS=120;
+const MIN_TIME=1000.0/MAX_FPS;
 
 function main()
 {
@@ -15,7 +16,6 @@ function main()
  ctx = canvas.getContext("2d");
  ctx.imageSmoothingEnabled = false;
  ctx.webkitImageSmoothingEnabled = false;
- console.log();
  state = new GameState(canvas,ctx);
  mainLoop(time());
 }
