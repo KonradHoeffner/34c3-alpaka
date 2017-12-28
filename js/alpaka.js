@@ -19,11 +19,6 @@ class Alpaka
   this.vx=Math.random()-0.5;
   this.vy=0;
  }
- 
- jump()
- {
-  this.vy+=5;
- }
 
  update(dt)
  {
