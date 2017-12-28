@@ -19,6 +19,7 @@ class Player
   this.downPressed = false;
   this.elapsed = 0;
   this.spriteNr = 0;
+  this.faceRight = true;
  }
   
  spriteChangeTime()
@@ -29,8 +30,8 @@ class Player
 
  update(dt)
  {
-  if(this.leftPressed)  {this.x-= SPEED;}
-  if(this.rightPressed) {this.x+=SPEED;}
+  if(this.leftPressed)  {this.x-= SPEED;this.faceRight=false;}
+  if(this.rightPressed) {this.x+=SPEED;this.faceRight=true;}
   this.elapsed+=dt;
   if(this.elapsed>this.spriteChangeTime())
   {
@@ -43,7 +44,7 @@ class Player
  draw(ctx)
  {
   const sprite = playerSprites[this.spriteNr];
-  if(this.rightPressed)
+  if(this.faceRight)
   {
    ctx.save(); 
    ctx.scale(-1,1);
