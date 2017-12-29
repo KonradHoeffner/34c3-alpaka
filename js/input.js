@@ -20,10 +20,10 @@ function onKey(event,players,pressed)
     	players[0].upPressed = pressed;
     }
 
-    else if(event.key== "d") {
+    else if((event.key == "d") || (event.key == "D")) {
         players[1].rightPressed = pressed;
     }
-    else if(event.key== "a") {
+    else if((event.key == "a") || (event.key == "A")) {
         players[1].leftPressed = pressed;
     }
     if(event.key== "s") {
