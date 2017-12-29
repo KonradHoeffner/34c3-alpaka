@@ -75,5 +75,7 @@ class Player
    if(this.rightPressed) alpaka.vx+=0.2;
   }
  }
+ 
+ 
 
 }
