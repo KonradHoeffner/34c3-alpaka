@@ -1,16 +1,16 @@
-const GRAVITY = 0.0001;
+/*const GRAVITY = 0.00015;
 const VY_MAX = 2;
 const VY_SLOW = 0.3;
-const SCALE = 4;
-const spriteUris =
+const SCALE = 4;*/
+const spriteUrisPink =
 [
-"./img/alpakaOrangeLO.png","./img/alpakaOrangeLU.png","./img/alpakaOrangeLN.png",
-"./img/alpakaOrangeRO.png","./img/alpakaOrangeRU.png","./img/alpakaOrangeRN.png"
+"./img/alpakaPinkLO.png","./img/alpakaPinkLU.png","./img/alpakaPinkLN.png",
+"./img/alpakaPinkRO.png","./img/alpakaPinkRU.png","./img/alpakaPinkRN.png"
 ];
-const alpakaSprites = [];
-for(const uri of spriteUris) {alpakaSprites.push(new Sprite(uri,20*SCALE,28*SCALE));}
+const alpakaSpritesPink = [];
+for(const uri of spriteUrisPink) {alpakaSpritesPink.push(new Sprite(uri,20*SCALE,28*SCALE));}
 
-class Alpaka
+class AlpakaPink
 {
  constructor(state,x)
  {
@@ -20,7 +20,7 @@ class Alpaka
   this.vy=0;
   this.state=state;
   this.isAlive=true;
-  this.colour = 0;
+  this.colour = 1;
  }
 
  update(dt)
@@ -76,7 +76,7 @@ class Alpaka
   if(this.vy>0) {spriteNr = 1;}
   }
   if(this.vx>0) {spriteNr+=3;} // right facing row 
-  const sprite = alpakaSprites[spriteNr];
+  const sprite = alpakaSpritesPink[spriteNr];
   sprite.draw(ctx,this.x,this.y);
  }
  
@@ -84,5 +84,5 @@ class Alpaka
  {
 	 return this.colour;
  }
-	 
+ 
 }

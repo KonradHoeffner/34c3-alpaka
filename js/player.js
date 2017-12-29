@@ -73,7 +73,15 @@ class Player
    alpaka.vx=av*Math.cos(angle);
    if(this.leftPressed) alpaka.vx-=0.2;
    if(this.rightPressed) alpaka.vx+=0.2;
+   //console.log("Player nr: " + this.nr);
+   //console.log("Alpaca colour: " + alpaka.getColour());
+   if(this.nr == 0 && alpaka.getColour() == 1){state.addPoints(-4);}
   }
+  
+  
+  //if(this.nr == 0 && alpaka.getcolour == 2){state.addpoints(-10);}
  }
+ 
+ 
 
 }
