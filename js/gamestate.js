@@ -101,7 +101,8 @@ class GameState
   {
    const player = this.players[i];
    player.update(dt);
-   if(i == 1){for(const alpakaPink of this.alpakasPink) {player.bounce(alpakaPink);}}
+   
+   for(const alpakaPink of this.alpakasPink) {player.bounce(alpakaPink);}
    for(const alpaka of this.alpakas) {player.bounce(alpaka);}
    
   }

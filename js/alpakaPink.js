@@ -20,6 +20,7 @@ class AlpakaPink
   this.vy=0;
   this.state=state;
   this.isAlive=true;
+  this.colour = 1;
  }
 
  update(dt)
@@ -78,4 +79,10 @@ class AlpakaPink
   const sprite = alpakaSpritesPink[spriteNr];
   sprite.draw(ctx,this.x,this.y);
  }
+ 
+ getColour()
+ {
+	 return this.colour;
+ }
+ 
 }

@@ -1,4 +1,4 @@
-const GRAVITY = 0.00015;
+const GRAVITY = 0.0001;
 const VY_MAX = 2;
 const VY_SLOW = 0.3;
 const SCALE = 4;
@@ -20,6 +20,7 @@ class Alpaka
   this.vy=0;
   this.state=state;
   this.isAlive=true;
+  this.colour = 0;
  }
 
  update(dt)
@@ -78,4 +79,10 @@ class Alpaka
   const sprite = alpakaSprites[spriteNr];
   sprite.draw(ctx,this.x,this.y);
  }
+ 
+ getColour()
+ {
+	 return this.colour;
+ }
+	 
 }
