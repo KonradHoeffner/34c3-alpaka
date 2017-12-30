@@ -1,4 +1,4 @@
-const GRAVITY = 0.0001;
+const GRAVITY = 0.00006;
 const VY_MAX = 2;
 const VY_SLOW = 0.3;
 const SCALE = 4;

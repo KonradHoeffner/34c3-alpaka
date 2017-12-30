@@ -73,7 +73,7 @@ class AlpakaBlau
 	 {
 		 state.addPoints(-2);
 		 state.missedBlinks.push(new Missed(this.x-70,this.y-70));
-		 console.log("missed!");
+		 //console.log("missed!");
 		 missedCooldownBlau = 40;
 	 }
 	 

@@ -155,17 +155,17 @@ class GameState
 
  alpakaSpawnRate()
  {
-  return 4000.0*20000/(20000+this.timeTotal);
+  return 5000.0*20000/(20000+this.timeTotal);
  }
  
  alpakaPinkSpawnRate()
  {
-  return 30000.0*20000/(20000+this.timeTotal);
+  return 40000.0*20000/(20000+this.timeTotal);
  }
  
  alpakaBlauSpawnRate()
  {
-  return 30000.0*20000/(20000+this.timeTotal);
+  return 40000.0*20000/(20000+this.timeTotal);
  }
 
  mateSpawnRate()

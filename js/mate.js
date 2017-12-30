@@ -1,3 +1,4 @@
+var cooldown = 0;
 const mateSpriteUris =
 [
 "./img/mate0.png","./img/mate1.png","./img/mate2.png","./img/mate3.png","./img/mate4.png"
@@ -37,6 +38,7 @@ class Mate
   }
   if(this.timeAlive>MATE_FADE_TIME_1) {this.spriteNr=3;}
   if(this.timeAlive>MATE_FADE_TIME_2) {this.spriteNr=4;}
+  cooldown-=1;
  }
 
  draw(ctx)
@@ -55,10 +57,11 @@ class Mate
   const xdist = acx-cx;
   const ydist = acy-cy;
   const dist = Math.sqrt(xdist*xdist+ydist*ydist); 
-  if(dist<100)
+  if(dist<80 && cooldown <= 0)
   {
    this.isAlive=false;
    alpaka.rescue();
+   cooldown = 2;
   }
  }
 

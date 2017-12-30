@@ -26,7 +26,12 @@ function mainLoop()
  if(state.lost)
  {
   document.getElementById("lostScreen").style.visibility="visible";
-  document.getElementById("lostScreenScore").innerText=state.points;
+  if(state.points < 0)
+  {
+	  document.getElementById("lostScreenScore").innerText = "0";
+  }else{
+	  document.getElementById("lostScreenScore").innerText=state.points;
+  }
   return;
  }
  if((time()-last)>MIN_TIME)
