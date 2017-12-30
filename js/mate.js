@@ -61,7 +61,7 @@ class Mate
   {
    this.isAlive=false;
    alpaka.rescue();
-   cooldown = 2;
+   cooldown = 1;
   }
  }
 
