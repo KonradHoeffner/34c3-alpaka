@@ -9,10 +9,13 @@ class GameState
   this.players = [new Player(0,924),new Player(1,100)];
   this.alpakas=[];
   this.alpakasPink = [];
+  this.alpakasBlau = [];
   this.mates=[];
   this.blinks=[];
+  this.missedBlinks=[];
   this.elapsed=0;
   this.elapsedPink = 0;
+  this.elapsedBlau = 14000;
   this.mateElapsed=0;
   this.canvas=canvas;
   this.ctx=ctx;
@@ -32,6 +35,7 @@ class GameState
   this.timeTotal+=dt;
   this.elapsed+=dt;
   this.elapsedPink+=dt;
+  this.elapsedBlau+=dt;
   this.mateElapsed+=dt;
   
   const mateRate = this.mateSpawnRate();
@@ -74,6 +78,20 @@ class GameState
   }
   this.alpakasPink=aliveAlpakasPink;
   
+  const rateBlau = this.alpakaBlauSpawnRate();
+  if(this.alpakasBlau.length<MAX_ALPAKASBLAU&&this.elapsedBlau>rateBlau)
+  {
+   this.elapsedBlau-=rateBlau;
+   this.alpakasBlau.push(new AlpakaBlau(this,Math.floor(Math.random()*this.canvas.width))); 
+  }
+  const aliveAlpakasBlau = [];
+  for(const alpakaBlau of this.alpakasBlau)
+  {
+   alpakaBlau.update(dt);
+   if(alpakaBlau.isAlive) {aliveAlpakasBlau.push(alpakaBlau);}
+  }
+  this.alpakasBlau=aliveAlpakasBlau;
+  
   {
    const aliveBlinks = [];
    for(const blink of this.blinks)
@@ -85,12 +103,23 @@ class GameState
   }
   
   {
+  const aliveMissedBlinks = [];
+   for(const missedBlink of this.missedBlinks)
+   {
+    missedBlink.update(dt);
+    if(missedBlink.isAlive) {aliveMissedBlinks.push(missedBlink);}
+   }
+   this.missedBlinks = aliveMissedBlinks;
+  }
+  
+  {
    const aliveMates = [];
    for(const mate of this.mates)
    {
     mate.update(dt);
     for(const alpaka of this.alpakas) {mate.collide(alpaka);}
     for(const alpakaPink of this.alpakasPink) {mate.collide(alpakaPink);}
+	for(const alpakaBlau of this.alpakasBlau) {mate.collide(alpakaBlau);}
     if(mate.isAlive) {aliveMates.push(mate);}
    }
    this.mates = aliveMates;
@@ -103,6 +132,7 @@ class GameState
    player.update(dt);
    
    for(const alpakaPink of this.alpakasPink) {player.bounce(alpakaPink);}
+   for(const alpakaBlau of this.alpakasBlau) {player.bounce(alpakaBlau);}
    for(const alpaka of this.alpakas) {player.bounce(alpaka);}
    
   }
@@ -117,18 +147,25 @@ class GameState
   }
   for(const alpaka of this.alpakas) {alpaka.draw(this.ctx);}
   for(const alpakaPink of this.alpakasPink) {alpakaPink.draw(this.ctx);}
+  for(const alpakaBlau of this.alpakasBlau) {alpakaBlau.draw(this.ctx);}
   for(const mate of this.mates) {mate.draw(this.ctx);}
   for(const blink of this.blinks) {blink.draw(this.ctx);}
+  for(const missedBlink of this.missedBlinks) {missedBlink.draw(this.ctx);}
  }
 
  alpakaSpawnRate()
  {
-  return 30000.0*20000/(20000+this.timeTotal);
+  return 4000.0*20000/(20000+this.timeTotal);
  }
  
  alpakaPinkSpawnRate()
  {
-  return 3000.0*20000/(20000+this.timeTotal);
+  return 30000.0*20000/(20000+this.timeTotal);
+ }
+ 
+ alpakaBlauSpawnRate()
+ {
+  return 30000.0*20000/(20000+this.timeTotal);
  }
 
  mateSpawnRate()

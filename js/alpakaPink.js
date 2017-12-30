@@ -2,6 +2,7 @@
 const VY_MAX = 2;
 const VY_SLOW = 0.3;
 const SCALE = 4;*/
+var missedCooldownPink = 0;
 const spriteUrisPink =
 [
 "./img/alpakaPinkLO.png","./img/alpakaPinkLU.png","./img/alpakaPinkLN.png",
@@ -21,6 +22,7 @@ class AlpakaPink
   this.state=state;
   this.isAlive=true;
   this.colour = 1;
+  this.missedCooldownPink = 0;
  }
 
  update(dt)
@@ -55,6 +57,7 @@ class AlpakaPink
     this.vy=-this.vy;
    }
   }
+  missedCooldownPink-=1;
  }
 
  rescue()
@@ -62,6 +65,18 @@ class AlpakaPink
   state.addPoints(1);
   this.isAlive=false;
   state.blinks.push(new Blink(this.x-70,this.y-70));
+ }
+ 
+ missed()
+ {
+	 if(missedCooldownPink <= 0)
+	 {
+		 state.addPoints(-2);
+		 state.missedBlinks.push(new Missed(this.x-70,this.y-70));
+		 console.log("missed!");
+		 missedCooldownPink = 40;
+	 }
+	 
  }
 
  draw(ctx)

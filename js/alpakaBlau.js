@@ -1,14 +1,15 @@
-const GRAVITY = 0.00015;
+/*const GRAVITY = 0.00015;
 const VY_MAX = 2;
 const VY_SLOW = 0.3;
-const SCALE = 4;
-const spriteUris =
+const SCALE = 4;*/
+var missedCooldownBlau = 0;
+const spriteUrisBlau =
 [
 "./img/alpakaBlauLO.png","./img/alpakaBlauLU.png","./img/alpakaBlauLN.png",
 "./img/alpakaBlauRO.png","./img/alpakaBlauRU.png","./img/alpakaBlauRN.png"
 ];
-const alpakaSprites = [];
-for(const uri of spriteUris) {alpakaSprites.push(new Sprite(uri,20*SCALE,28*SCALE));}
+const alpakaSpritesBlau = [];
+for(const uri of spriteUrisBlau) {alpakaSpritesBlau.push(new Sprite(uri,20*SCALE,28*SCALE));}
 
 class AlpakaBlau
 {
@@ -20,6 +21,8 @@ class AlpakaBlau
   this.vy=0;
   this.state=state;
   this.isAlive=true;
+  this.colour = 2;
+  this.missedCooldownBlau = 0;
  }
 
  update(dt)
@@ -54,6 +57,7 @@ class AlpakaBlau
     this.vy=-this.vy;
    }
   }
+  missedCooldownBlau-=1;
  }
 
  rescue()
@@ -61,6 +65,18 @@ class AlpakaBlau
   state.addPoints(1);
   this.isAlive=false;
   state.blinks.push(new Blink(this.x-70,this.y-70));
+ }
+ 
+ missed()
+ {
+	 if(missedCooldownBlau <= 0)
+	 {
+		 state.addPoints(-2);
+		 state.missedBlinks.push(new Missed(this.x-70,this.y-70));
+		 console.log("missed!");
+		 missedCooldownBlau = 40;
+	 }
+	 
  }
 
  draw(ctx)
@@ -75,7 +91,13 @@ class AlpakaBlau
   if(this.vy>0) {spriteNr = 1;}
   }
   if(this.vx>0) {spriteNr+=3;} // right facing row 
-  const sprite = alpakaSprites[spriteNr];
+  const sprite = alpakaSpritesBlau[spriteNr];
   sprite.draw(ctx,this.x,this.y);
  }
+ 
+ getColour()
+ {
+	 return this.colour;
+ }
+ 
 }
