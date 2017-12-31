@@ -37,7 +37,7 @@ class GameState
   this.elapsedPink+=dt;
   this.elapsedBlau+=dt;
   this.mateElapsed+=dt;
-  
+
   const mateRate = this.mateSpawnRate();
   if(this.mateElapsed>mateRate)
   {
@@ -48,13 +48,13 @@ class GameState
 	);
    this.mates.push(mate);
   }
-  
+
   const rate = this.alpakaSpawnRate();
   if(this.alpakas.length<MAX_ALPAKAS&&this.elapsed>rate)
   {
    this.elapsed-=rate;
    this.alpakas.push(new Alpaka(this,Math.floor(Math.random()*this.canvas.width)));
-   //this.alpakas.push(new AlpakaPink(this,Math.floor(Math.random()*this.canvas.width))); 
+   //this.alpakas.push(new AlpakaPink(this,Math.floor(Math.random()*this.canvas.width)));
   }
   const aliveAlpakas = [];
   for(const alpaka of this.alpakas)
@@ -63,12 +63,12 @@ class GameState
    if(alpaka.isAlive) {aliveAlpakas.push(alpaka);}
   }
   this.alpakas=aliveAlpakas;
-  
+
   const ratePink = this.alpakaPinkSpawnRate();
   if(this.alpakasPink.length<MAX_ALPAKASPINK&&this.elapsedPink>ratePink)
   {
    this.elapsedPink-=ratePink;
-   this.alpakasPink.push(new AlpakaPink(this,Math.floor(Math.random()*this.canvas.width))); 
+   this.alpakasPink.push(new AlpakaPink(this,Math.floor(Math.random()*this.canvas.width)));
   }
   const aliveAlpakasPink = [];
   for(const alpakaPink of this.alpakasPink)
@@ -77,12 +77,12 @@ class GameState
    if(alpakaPink.isAlive) {aliveAlpakasPink.push(alpakaPink);}
   }
   this.alpakasPink=aliveAlpakasPink;
-  
+
   const rateBlau = this.alpakaBlauSpawnRate();
   if(this.alpakasBlau.length<MAX_ALPAKASBLAU&&this.elapsedBlau>rateBlau)
   {
    this.elapsedBlau-=rateBlau;
-   this.alpakasBlau.push(new AlpakaBlau(this,Math.floor(Math.random()*this.canvas.width))); 
+   this.alpakasBlau.push(new AlpakaBlau(this,Math.floor(Math.random()*this.canvas.width)));
   }
   const aliveAlpakasBlau = [];
   for(const alpakaBlau of this.alpakasBlau)
@@ -91,7 +91,7 @@ class GameState
    if(alpakaBlau.isAlive) {aliveAlpakasBlau.push(alpakaBlau);}
   }
   this.alpakasBlau=aliveAlpakasBlau;
-  
+
   {
    const aliveBlinks = [];
    for(const blink of this.blinks)
@@ -101,7 +101,7 @@ class GameState
    }
    this.blinks = aliveBlinks;
   }
-  
+
   {
   const aliveMissedBlinks = [];
    for(const missedBlink of this.missedBlinks)
@@ -111,7 +111,7 @@ class GameState
    }
    this.missedBlinks = aliveMissedBlinks;
   }
-  
+
   {
    const aliveMates = [];
    for(const mate of this.mates)
@@ -119,22 +119,23 @@ class GameState
     mate.update(dt);
     for(const alpaka of this.alpakas) {mate.collide(alpaka);}
     for(const alpakaPink of this.alpakasPink) {mate.collide(alpakaPink);}
-	for(const alpakaBlau of this.alpakasBlau) {mate.collide(alpakaBlau);}
+	  for(const alpakaBlau of this.alpakasBlau) {mate.collide(alpakaBlau);}
     if(mate.isAlive) {aliveMates.push(mate);}
    }
    this.mates = aliveMates;
   }
-  
-  //for(const player of this.players)
+
+  // test for same colored ship first in case they overlap
+  for(const alpakaPink of this.alpakasPink) {this.players[1].bounce(alpakaPink);}
+  for(const alpakaBlau of this.alpakasBlau) {this.players[0].bounce(alpakaBlau);}
+
   for(let i = 0; i<this.players.length; i++)
   {
    const player = this.players[i];
    player.update(dt);
-   
    for(const alpakaPink of this.alpakasPink) {player.bounce(alpakaPink);}
    for(const alpakaBlau of this.alpakasBlau) {player.bounce(alpakaBlau);}
    for(const alpaka of this.alpakas) {player.bounce(alpaka);}
-   
   }
  }
 
@@ -157,12 +158,12 @@ class GameState
  {
   return 5000.0*20000/(20000+this.timeTotal);
  }
- 
+
  alpakaPinkSpawnRate()
  {
   return 40000.0*20000/(20000+this.timeTotal);
  }
- 
+
  alpakaBlauSpawnRate()
  {
   return 40000.0*20000/(20000+this.timeTotal);

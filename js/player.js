@@ -23,7 +23,7 @@ class Player
   this.spriteNr = 0;
   this.faceRight = true;
  }
-  
+
  spriteChangeTime()
  {
   if(this.leftPressed||this.rightPressed) {return 50;}
@@ -49,7 +49,7 @@ class Player
   const sprite = playerSprites[3*this.nr+this.spriteNr];
   if(this.faceRight)
   {
-   ctx.save(); 
+   ctx.save();
    ctx.scale(-1,1);
    sprite.draw(ctx,-this.x-sprite.width,this.y);
    ctx.restore();
@@ -61,12 +61,14 @@ class Player
 
  bounce(alpaka)
  {
+  if(alpaka.vy<0) {return;} // only bounce when going downward to prevent multiple bounces
   const cx = this.x+playerSprites[0].width/2;
   const acx = alpaka.x+alpakaSprites[0].width/2;
   const xdist = acx-cx;
   const ydist = this.y-alpaka.y;
   if((Math.abs(xdist)<150)&&(ydist>0)&&(ydist<100))
   {
+   console.log(alpaka+" "+this+alpaka.vy);
    const av = Math.sqrt(alpaka.vx*alpaka.vx+alpaka.vy*alpaka.vy); // speed up on bounce
    const angle = (xdist*0.3-90)*Math.PI/180;
    alpaka.vy=av*Math.sin(angle);
@@ -76,11 +78,11 @@ class Player
    if(this.nr == 0 && alpaka.getColour() == 1){alpaka.missed();}	//rosa Alpaka ist auf Blaues Trampolin
    if(this.nr == 1 && alpaka.getColour() == 2){alpaka.missed();}	//blaues Alpaka ist auf rosa Trampolin
   }
-  
-  
-  
+
+
+
  }
- 
- 
+
+
 
 }
