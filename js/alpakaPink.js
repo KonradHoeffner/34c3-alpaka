@@ -46,7 +46,7 @@ class AlpakaPink
   // in ship?
   if(this.vy<0&&this.y<30)
   {
-   if(this.x>400&&this.x<840)
+   if(this.x>MOTHERSHIP_OPENING_LEFT&&this.x<MOTHERSHIP_OPENING_RIGHT)
    {
     this.rescue();
    } else
