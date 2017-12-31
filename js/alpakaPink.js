@@ -1,15 +1,12 @@
-/*const GRAVITY = 0.00015;
-const VY_MAX = 2;
-const VY_SLOW = 0.3;
-const SCALE = 4;*/
 var missedCooldownPink = 0;
+
 const spriteUrisPink =
 [
 "./img/alpakaPinkLO.png","./img/alpakaPinkLU.png","./img/alpakaPinkLN.png",
 "./img/alpakaPinkRO.png","./img/alpakaPinkRU.png","./img/alpakaPinkRN.png"
 ];
 const alpakaSpritesPink = [];
-for(const uri of spriteUrisPink) {alpakaSpritesPink.push(new Sprite(uri,20*SCALE,28*SCALE));}
+for(const uri of spriteUrisPink) {alpakaSpritesPink.push(new Sprite(uri,20*ALPAKA_SCALE,28*ALPAKA_SCALE));}
 
 class AlpakaPink
 {
@@ -31,7 +28,7 @@ class AlpakaPink
   this.vy+=GRAVITY*dt;
   this.vy=Math.min(this.vy,VY_MAX);
   this.y+=this.vy*dt;
-    
+
   if(this.y>780)
   {
    state.lost=true;
@@ -66,7 +63,7 @@ class AlpakaPink
   this.isAlive=false;
   state.blinks.push(new Blink(this.x-70,this.y-70));
  }
- 
+
  missed()
  {
 	 if(missedCooldownPink <= 0)
@@ -76,7 +73,7 @@ class AlpakaPink
 		 //console.log("missed!");
 		 missedCooldownPink = 40;
 	 }
-	 
+
  }
 
  draw(ctx)
@@ -90,14 +87,14 @@ class AlpakaPink
   {
   if(this.vy>0) {spriteNr = 1;}
   }
-  if(this.vx>0) {spriteNr+=3;} // right facing row 
+  if(this.vx>0) {spriteNr+=3;} // right facing row
   const sprite = alpakaSpritesPink[spriteNr];
   sprite.draw(ctx,this.x,this.y);
  }
- 
+
  getColour()
  {
 	 return this.colour;
  }
- 
+
 }

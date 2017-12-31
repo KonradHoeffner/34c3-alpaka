@@ -4,7 +4,7 @@ const mateSpriteUris =
 "./img/mate0.png","./img/mate1.png","./img/mate2.png","./img/mate3.png","./img/mate4.png"
 ];
 const mateSprites= [];
-for(const uri of mateSpriteUris) {mateSprites.push(new Sprite(uri,32*SCALE,32*SCALE));}
+for(const uri of mateSpriteUris) {mateSprites.push(new Sprite(uri,32*ALPAKA_SCALE,32*ALPAKA_SCALE));}
 const MATE_ARRIVAL_TIME = 180;
 const MATE_FADE_TIME_1 = 3700;
 const MATE_FADE_TIME_2 = 3850;
