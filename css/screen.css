@@ -15,6 +15,22 @@ body
  margin: 0;
 }
 
+.mothership
+{
+ position: absolute;
+ top:0px;
+ left:0px;
+ padding: 0;
+ margin: 0;
+ width: 1280px;
+ height: 250px;
+ -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+ -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+ animation-name: example;
+ animation-duration: 2s;
+ animation-iteration-count: infinite;
+}
+
 #score
 {
  color:white;
@@ -37,14 +53,16 @@ body
 #mothership_back
 {
  background:url('../img/mothership_01_back.png'); 
- width: 1280px;
- height: 250px;
 }
 #mothership_front
 {
  background:url('../img/mothership_01_front.png'); 
- width: 1280px;
- height: 250px;
+}
+
+@keyframes example {
+    0%     { margin-top:-5px; }	
+    50%    { margin-top:0px; }	
+    100%   { margin-top:-5px; }	
 }
 
 #background
