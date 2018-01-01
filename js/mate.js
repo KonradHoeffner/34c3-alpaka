@@ -55,7 +55,7 @@ class Mate
   const xdist = acx-cx;
   const ydist = acy-cy;
   const dist = Math.sqrt(xdist*xdist+ydist*ydist);
-  if(dist<80 && this.timeAlive > MATE_ARRIVAL_TIME)
+  if(dist<80 && this.timeAlive > MATE_ARRIVAL_TIME*3)
   {
    this.isAlive=false;
    alpaka.rescue();
