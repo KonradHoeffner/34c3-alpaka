@@ -30,7 +30,7 @@ function mainLoop()
   highScore = parseInt(document.cookie);
   if(!highScore) {highScore=0;}
   document.cookie=highScore;
-  let m = "<div style='text-align:center;font-size:9vmin;'>"+state.points+"</div><div style='text-align:center;margin-top:-2vmin;margin-left:-5vmin;'>";
+  let m = "<div style='text-align:center;font-size:9vmin;'>"+state.points+"</div><div style='text-align:center;margin-left:-3vmin;'>";
   if(state.points>highScore)
   {
    m+="NEW HIGHSCORE!";
