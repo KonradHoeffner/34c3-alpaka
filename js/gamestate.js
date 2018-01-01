@@ -22,6 +22,11 @@ class GameState
   this.points=0;
   this.lost=false;
   this.timeTotal=0;
+  // spawn one Alpaka at the start if not playing for the first time
+  if(document.cookie)
+  {
+   this.alpakas.push(new Alpaka(this,Math.floor(Math.random()*this.canvas.width)));
+  }
  }
 
  addPoints(points)

@@ -41,12 +41,11 @@ body
 #lostScreenScore
 {
  position: relative;
- font-size:18.1vmin;
- top:57%;
+ font-size:5vmin;
+ top:55%;
  width: 100%;
  left:0px;
  color:#6eff6b;
- text-align:center;
  font-family: 'Press Start 2P', cursive;
 }
 

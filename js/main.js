@@ -26,12 +26,19 @@ function mainLoop()
  if(state.lost)
  {
   document.getElementById("lostScreen").style.visibility="visible";
-  if(state.points < 0)
+  state.points=Math.max(0,state.points);
+  highScore = parseInt(document.cookie);
+  if(!highScore) {highScore=0;}
+  document.cookie=highScore;
+  let m = "<div style='text-align:center;font-size:9vmin;'>"+state.points+"</div><div style='text-align:center;margin-top:-2vmin;margin-left:-5vmin;'>";
+  if(state.points>highScore)
   {
-	  document.getElementById("lostScreenScore").innerText = "0";
-  }else{
-	  document.getElementById("lostScreenScore").innerText=state.points;
+   m+="NEW HIGHSCORE!";
+   document.cookie=state.points;
   }
+  else {m+="Highscore "+highScore;}
+  m+="</div>";
+  document.getElementById("lostScreenScore").innerHTML=m;
   return;
  }
  if((time()-last)>MIN_TIME)
