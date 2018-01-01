@@ -4,6 +4,10 @@ body
  padding: 0;
  margin: 0;
  overflow:hidden;
+ max-width: 100vw;
+ max-height: 100vh;
+ width: 177vh;
+ height: 56vw;
 }
 
 .absolute
@@ -13,22 +17,25 @@ body
  left:0px;
  padding: 0;
  margin: 0;
+ width:100%;
+ height:100%;
+ max-width: 177vh;
+ max-height: 56vw;
 }
 
 #score
 {
  color:white;
- width:1280px;
  text-align:right;
 }
 
 #lostScreenScore
 {
- position:absolute;
- font-size:10em;
- top:400px;
+ position: relative;
+ font-size:4em;
+ top:55%;
+ width: 100%;
  left:0px;
- width:1280px;
  color:#6eff6b;
  text-align:center;
  font-family: 'Press Start 2P', cursive;
@@ -36,27 +43,30 @@ body
 
 #mothership_back
 {
- background:url('../img/mothership_01_back.png'); 
- width: 1280px;
- height: 250px;
+ background:url('../img/mothership_01_back.png');
+ background-repeat: no-repeat;
+ background-size: contain;
 }
+
 #mothership_front
 {
- background:url('../img/mothership_01_front.png'); 
- width: 1280px;
- height: 250px;
+ background:url('../img/mothership_01_front.png');
+ background-repeat: no-repeat;
+ background-size: contain;
 }
 
 #background
 {
  background:url('../img/background_01.jpg');
- width: 1280px;
- height: 720px;
+ background-repeat: no-repeat;
+ background-size: contain;
 }
 
 #gameCanvas
 {
-/* width:1280px;
- height:720px;*/
+ /* fill screen but preserve aspect ratio */
+ /* 1280/720 ~ 1.77*/
+ max-width: 177vh;
+ max-height: 56vw;
  color:white;
 }
