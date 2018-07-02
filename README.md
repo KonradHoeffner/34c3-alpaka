@@ -7,4 +7,5 @@ Playable at [https://konradhoeffner.github.io/34c3-alpaka/].
 ## Controls
 
 Player 1: A and D
+
 Player 2: Left Arrow and Right Arrow.
